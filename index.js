@@ -8,20 +8,20 @@ const cookieParser = require('cookie-parser')
 const app = express();
 
 app.use(cors({
-    origin : process.env.FRONTEND_URL,
-    credentials : true
+    origin: process.env.FRONTEND_URL,
+    credentials: true
 }));
 
 app.use(express.json());
 app.use(cookieParser())
 
 
-app.use("/api",router);
-const PORT = 8080 || process.env.PORT
+app.use("/api", router);
+const PORT = process.env.PORT || 8080
 
 // Connecting to db then starting the server
-db().then(()=>{
-app.listen(PORT,()=>{
-    console.log("Server Running on Port:",PORT);
-})
+db().then(() => {
+    app.listen(PORT, () => {
+        console.log("Server Running on Port:", PORT);
+    })
 })
